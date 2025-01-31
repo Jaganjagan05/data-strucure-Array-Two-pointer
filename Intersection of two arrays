@@ -1,0 +1,51 @@
+Given two arrays a[] and b[], the task is to find the number of elements in the union between these two arrays.
+
+The Union of the two arrays can be defined as the set containing distinct elements from both arrays. If there are repetitions, then only one element occurrence should be there in the union.
+
+Note: Elements of a[] and b[] are not necessarily distinct.
+
+Given two unsorted integer arrays a[] and b[] each consisting of distinct elements, the task is to return the count of elements in the intersection (or common elements) of the two arrays.
+
+Intersection of two arrays can be defined as the set containing distinct common elements between the two arrays. 
+
+Examples:
+
+Input: a[] = [89, 24, 75, 11, 23], b[] = [89, 2, 4]
+Output: 1
+Explanation: 89 is the only element in the intersection of two arrays.
+Input: a[] = [1, 2, 4, 3, 5, 6], b[] = [3, 4, 5, 6, 7]
+Output: 4
+Explanation: 3, 4, 5, and 6 are the elements in the intersection of two arrays.
+Input: a[] = [20, 10, 30, 50, 40], b[] = [15, 25, 30, 20, 35]
+Output: 2
+Explanation: 20 and 30 are the elements in the intersection of the two arrays.
+Constraints:
+1  ≤  a.size(), b.size() ≤  105
+1  ≤  a[i], b[i]  ≤  105
+
+
+class Solution {
+    public static int numberofElementsInIntersection(int a[], int b[]) {
+         int n1 = a.length;
+        int n2 = b.length;
+
+        Arrays.sort(a);
+        Arrays.sort(b);
+
+        int i = 0, j = 0;
+        int c=0;
+        List<Integer> union = new ArrayList<>();
+        while(i<n1 && j<n2){
+            if(a[i]==b[j]){
+                i++;
+                j++;
+                c++;
+            }
+            else if(a[i]<b[j]) i++;
+            else j++;
+        }
+
+        return c;
+        // Your code here
+    }
+}
